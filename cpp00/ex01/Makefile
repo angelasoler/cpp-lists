@@ -1,4 +1,4 @@
-SRC = Phonebook.cpp Contact.cpp
+SRC = Phonebook.cpp Contact.cpp Main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
@@ -10,6 +10,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+
+%.o:%.cpp
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

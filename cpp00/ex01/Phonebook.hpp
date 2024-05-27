@@ -1,21 +1,16 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
+#include "Contact.hpp"
 #include <iostream>
-
-#ifndef DEBUG
-#define DEBUG 0
-#endif
+#include <iomanip>
 
 class Phonebook
 {
-  public:
-	Phonebook(void);
-	Phonebook(const Phonebook &copy);
-	Phonebook &operator=(const Phonebook &copy);
-	~Phonebook(void);
-
-  private:
+	public:
+		int		Command(void);
+	private:
+		Contact contacts[N_CONTACTS];
 };
 
 #endif /* PHONEBOOK_HPP */
