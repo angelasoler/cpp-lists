@@ -13,18 +13,18 @@ _test_output()
 
 TEST=$(valgrind -q ./megaphone "shhhhh... I think the students are asleep...")
 echo $TEST
-# RESULT="SHHHHH... I THINK THE STUDENTS ARE ASLEEP..."
-# _test_output 1 "$TEST" "$RESULT"
+RESULT="SHHHHH... I THINK THE STUDENTS ARE ASLEEP..."
+_test_output 1 "$TEST" "$RESULT"
 
 TEST=$(valgrind -q ./megaphone Damnit " ! " "Sorry students, I thought this thing was off.")
 echo $TEST
-# RESULT="DAMNIT ! SORRY STUDENTS, I THOUGHT THIS THING WAS OFF."
-# _test_output 2 "$TEST" "$RESULT"
+RESULT="DAMNIT ! SORRY STUDENTS, I THOUGHT THIS THING WAS OFF."
+_test_output 2 "$TEST" "$RESULT"
 
 TEST=$(valgrind -q ./megaphone)
 echo $TEST
-# RESULT="* LOUD AND UNBEARABLE FEEDBACK NOISE *"
-# _test_output 3 "$TEST" "$RESULT"
+RESULT="* LOUD AND UNBEARABLE FEEDBACK NOISE *"
+_test_output 3 "$TEST" "$RESULT"
 
 echo "all tests passed"
 
