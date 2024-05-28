@@ -1,5 +1,26 @@
 #include "Phonebook.hpp"
 
+// TO-DO
+// [_] usar a função de contact e apagar a duplicada (is_number)
+static long	is_number(const std::string& n)
+{
+	long	result = 0;
+
+	if (n.empty())
+		return (0);
+	for (int i = 0; i < (int)n.size(); i++) {
+		if (n[i] < '0' || n[i] > '9') {
+			std::cout << "Invalid input, try again please" << std::endl;
+			return (0);
+		}
+		int digit = n[i] - 48;
+		result = result * 10 + digit;
+	}
+
+	return (result);
+}
+
+
 int	Phonebook::AddAContact()
 {
 	static int	current_contact_index;
@@ -16,10 +37,30 @@ int	Phonebook::AddAContact()
 	return (0);
 }
 
+// [_] formatar tabela 10 char limited
+void	Phonebook::DisplayContactByIndex()
+{
+	std::string	input;
+	int index = 0;
 
-// TO-DO
-// [_] tratar output, 10 chars limited
-// [_] make Dysplat contact by index
+	while (!index || index > this->size || index > 8) {
+		std::cout << "See by Index(1-8):" << std::endl;
+		getline(std::cin, input);
+		index = is_number(input);
+	}
+
+	std::cout << "First Name" << std::endl;
+	std::cout << this->contacts[index - 1].first_name << std::endl;
+	std::cout << "Last Name" << std::endl;
+	std::cout << this->contacts[index - 1].last_name << std::endl;
+	std::cout << "Nickname" << std::endl;
+	std::cout << this->contacts[index - 1].nickname << std::endl;
+	std::cout << "Phonenumber" << std::endl;
+	std::cout << this->contacts[index - 1].phonenumber << std::endl;
+	std::cout << "Darkest Secret" << std::endl;
+	std::cout << this->contacts[index - 1].darkest_secret << std::endl;
+}
+
 void	Phonebook::DisplayContactsList(void)
 {
 	std::cout << "|";
@@ -50,13 +91,6 @@ void	Phonebook::DisplayContactsList(void)
 		std::cout << std::setw(10) << this->contacts[i].darkest_secret;
 		std::cout << "|" << std::endl;
 	}
-	int index = 0;
-	while (!index || index > 8) {
-		std::cout << "See by Index(1-8):" << std::endl;
-		getline(cin, input);
-		index = is_number(input);
-	}
-	DysplayContactByIndex(index);
 }
 
 int Phonebook::Command(void)
@@ -70,8 +104,14 @@ int Phonebook::Command(void)
 		else
 			std::cout << "Contact was saved successfully" << std::endl;
 	}
-	else if (cmd == "SEARCH")
+	else if (cmd == "SEARCH") {
+		if (!this->size) {
+			std::cout << "There's no contacts in your phonebook" << std::endl;
+			return (0);
+		}
 		this->DisplayContactsList();
+		this->DisplayContactByIndex();
+	}
 	else if (cmd == "EXIT")
 		return (1);
 	else

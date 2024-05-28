@@ -19,7 +19,7 @@ class Contact
 		long		phonenumber;
 		std::string	darkest_secret;
 		Contact();
-		void	fill_contact_fields();
+		void		fill_contact_fields();
 	private:
 };
 

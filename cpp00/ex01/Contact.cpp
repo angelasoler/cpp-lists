@@ -3,7 +3,7 @@
 
 Contact::Contact(){}
 
-long	is_number(const std::string& n)
+static long	is_number(const std::string& n)
 {
 	long	result = 0;
 

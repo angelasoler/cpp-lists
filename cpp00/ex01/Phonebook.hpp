@@ -9,11 +9,12 @@ class Phonebook
 {
 	public:
 		int	Command(void);
+		int		size;
 	private:
 		Contact	contacts[N_CONTACTS];
-		int		size;
 		int		AddAContact(void);
-		void	DisplayAContact(void);
+		void	DisplayContactsList(void);
+		void	DisplayContactByIndex(void);
 };
 
 #endif /* PHONEBOOK_HPP */
