@@ -8,9 +8,12 @@
 class Phonebook
 {
 	public:
-		int		Command(void);
+		int	Command(void);
 	private:
-		Contact contacts[N_CONTACTS];
+		Contact	contacts[N_CONTACTS];
+		int		size;
+		int		AddAContact(void);
+		void	DisplayAContact(void);
 };
 
 #endif /* PHONEBOOK_HPP */

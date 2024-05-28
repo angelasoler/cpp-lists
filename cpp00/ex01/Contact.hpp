@@ -7,6 +7,7 @@
 #endif
 
 #include <iostream>
+#include <string>
 
 
 class Contact
@@ -15,9 +16,10 @@ class Contact
 		std::string	first_name;
 		std::string	last_name;
 		std::string	nickname;
-		int			phonenumber;
+		long		phonenumber;
 		std::string	darkest_secret;
-		void	SetFirtsName(string name);
+		Contact();
+		void	fill_contact_fields();
 	private:
 };
 

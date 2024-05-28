@@ -2,7 +2,7 @@ SRC = Phonebook.cpp Contact.cpp Main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g3
 
 NAME = phonebook
 
