@@ -1,19 +1,16 @@
 #include "Phonebook.hpp"
 
-// TO-DO
-// [_] If the user tries to add a 9th contact, replace the oldest one by the new one.
-
 int	Phonebook::AddAContact()
 {
 	static int	current_contact_index;
 	std::string	input;
 
-	this->contacts[current_contact_index].fill_contact_fields();
-	current_contact_index++;
-	this->size = current_contact_index;
-	if (current_contact_index >= N_CONTACTS) {
+	if (this->size == N_CONTACTS)
 		current_contact_index = 0;
-		this->size = N_CONTACTS;
+	this->contacts[current_contact_index].fill_contact_fields();
+	if (this->size < N_CONTACTS) {
+		this->size = current_contact_index + 1;
+		current_contact_index++;
 	}
 	return (0);
 }
@@ -50,7 +47,7 @@ void	Phonebook::DisplayContactByIndex()
 // [_] formatar tabela 10 char limited
 void	Phonebook::DisplayContactsList(void)
 {
-	std::cout << "|" << std::setw(10) << truncated_field("Index");
+	std::cout << "|" << std::right << std::setw(10) << truncated_field("Index");
 	std::cout << "|" << std::setw(10) << truncated_field("First Name");
 	std::cout << "|" << std::setw(10) << truncated_field("Last Name");
 	std::cout << "|" << std::setw(10) << truncated_field("Nickname");
@@ -76,8 +73,13 @@ void	Phonebook::DisplayContactsList(void)
 
 int Phonebook::Command(void)
 {
-	std::string cmd;
+	std::string	cmd;
+	static int	count_entries;
 
+	if (count_entries%5 == 0) {
+		std::cout << "\tRemember" << std::endl;
+		InitInstructions();
+	}
 	std::getline(std::cin, cmd);
 	if (cmd == "ADD") {
 		std::cout << "\n" << std::endl;
@@ -86,7 +88,6 @@ int Phonebook::Command(void)
 		else
 			std::cout << "Contact was saved successfully" << std::endl;
 		std::cout << "\n" << std::endl;
-		InitInstructions();
 	}
 	else if (cmd == "SEARCH") {
 		std::cout << "\n" << std::endl;
@@ -97,11 +98,11 @@ int Phonebook::Command(void)
 		this->DisplayContactsList();
 		this->DisplayContactByIndex();
 		std::cout << "\n" << std::endl;
-		InitInstructions();
 	}
 	else if (cmd == "EXIT")
 		return (1);
 	else
 		std::cout << "Try again with a valid command please" << std::endl;
+	count_entries++;
 	return (0);
 }

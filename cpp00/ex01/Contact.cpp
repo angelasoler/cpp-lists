@@ -22,11 +22,23 @@ int	SetNumericField(std::string output)
 
 std::string	SetField(std::string output)
 {
-	std::string	input;
+	std::string					input;
+	std::string::const_iterator	it;
+	std::string					result;
 
 	while (input.empty()) {
 		std::cout << output;
 		std::getline(std::cin, input);
+		it = input.begin();
+		while (it != input.end()) {
+			if (!std::isspace(*it))
+				result += *it;
+			it++;
+		}
+		if (result.empty())
+			input.clear();
+		else
+			input = result;
 	}
 	return (input);
 }
