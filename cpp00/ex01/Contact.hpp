@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include "utils.hpp"
 
 
 class Contact
@@ -18,8 +19,9 @@ class Contact
 		std::string	nickname;
 		long		phonenumber;
 		std::string	darkest_secret;
-		Contact();
+		long		is_number(const std::string& n);
 		void		fill_contact_fields();
+		Contact();
 	private:
 };
 

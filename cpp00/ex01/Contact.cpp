@@ -3,24 +3,6 @@
 
 Contact::Contact(){}
 
-static long	is_number(const std::string& n)
-{
-	long	result = 0;
-
-	if (n.empty())
-		return (0);
-	for (int i = 0; i < (int)n.size(); i++) {
-		if (n[i] < '0' || n[i] > '9') {
-			std::cout << "Invalid input, try again please" << std::endl;
-			return (0);
-		}
-		int digit = n[i] - 48;
-		result = result * 10 + digit;
-	}
-
-	return (result);
-}
-
 int	SetNumericField(std::string output)
 {
 	std::string	input;
@@ -33,7 +15,7 @@ int	SetNumericField(std::string output)
 			std::cout << "Number is too long, 15 digits is the limit, try again please" << std::endl;
 			continue;
 		}
-		ret = is_number(input);
+		ret = ft_atoi(input);
 	}
 	return (ret);
 }

@@ -9,7 +9,7 @@ class Phonebook
 {
 	public:
 		int	Command(void);
-		int		size;
+		int	size;
 	private:
 		Contact	contacts[N_CONTACTS];
 		int		AddAContact(void);
