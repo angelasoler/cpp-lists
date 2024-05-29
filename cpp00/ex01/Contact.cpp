@@ -31,7 +31,7 @@ std::string	SetField(std::string output)
 		std::getline(std::cin, input);
 		it = input.begin();
 		while (it != input.end()) {
-			if (!std::isspace(*it))
+			if (!std::isspace(*it) || (*it == 32 && !std::isspace(*(it + 1)) && !std::isspace(*(it - 1))))
 				result += *it;
 			it++;
 		}

@@ -44,7 +44,6 @@ void	Phonebook::DisplayContactByIndex()
 	std::cout << "\n" << std::endl;
 }
 
-// [_] formatar tabela 10 char limited
 void	Phonebook::DisplayContactsList(void)
 {
 	std::cout << "|" << std::right << std::setw(10) << truncated_field("Index");
@@ -76,8 +75,8 @@ int Phonebook::Command(void)
 	std::string	cmd;
 	static int	count_entries;
 
-	if (count_entries%5 == 0) {
-		std::cout << "\tRemember" << std::endl;
+	if (count_entries%5 == 0 && count_entries != 0) {
+		std::cout << "\tREMEMBER!" << std::endl;
 		InitInstructions();
 	}
 	std::getline(std::cin, cmd);

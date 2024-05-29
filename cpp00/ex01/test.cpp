@@ -7,6 +7,7 @@
 #include "utils.hpp"
 #include "doctest.h"
 
+
 TEST_SUITE("Utils")
 {
 	TEST_CASE("Truncate field, 10 character wide")
