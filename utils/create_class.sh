@@ -18,7 +18,7 @@ CLASS=$(echo "$ARG1" | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
 CLASS_UPPER=$(echo "$CLASS" | tr '[:lower:]' '[:upper:]')
 FILE_CPP=$CLASS.cpp
 FILE_HPP=$CLASS.hpp
-FILE_TEST="$CLASS"_test.cpp
+# FILE_TEST="$CLASS"_test.cpp
 DATE=$(date +"%Y/%m/%d %H:%M:%S")
 
 # fn_header <file>
@@ -61,13 +61,10 @@ echo "
 
 class $CLASS
 {
-  public:
-	$CLASS(void);
-	$CLASS(const $CLASS &copy);
-	$CLASS &operator=(const $CLASS &copy);
-	~$CLASS(void);
-
-  private:
+	private:
+		$CLASS(void);
+		~$CLASS(void);
+	public:
 };
 
 #endif /* "$CLASS_UPPER"_HPP */" >> $FILE_HPP
@@ -78,24 +75,7 @@ echo "
 "$CLASS"::"$CLASS"(void)
 {
 	if (DEBUG)
-		std::cout << \"$CLASS default constructor called\" << std::endl;
-}
-
-$CLASS::$CLASS(const $CLASS &copy)
-{
-	if (DEBUG)
-		std::cout << \"$CLASS copy constructor called\" << std::endl;
-	*this = copy;
-}
-
-$CLASS &$CLASS::operator=(const $CLASS &copy)
-{
-	if (DEBUG)
-		std::cout << \"$CLASS copy assignment operator called\" << std::endl;
-	if (this != &copy)
-	{
-	}
-	return *this;
+		std::cout << \"$CLASS constructor called\" << std::endl;
 }
 
 "$CLASS"::~"$CLASS"(void)
@@ -104,17 +84,13 @@ $CLASS &$CLASS::operator=(const $CLASS &copy)
 		std::cout << \"$CLASS destructor called\" << std::endl;
 }" >> $FILE_CPP
 
+# echo "
+# #include \"$FILE_HPP\"
+# #include \"doctest.h\"
 
-echo "
-#include \"$FILE_HPP\"
-#include \"doctest.h\"
-
-TEST_SUITE(\"Class $CLASS\")
-{
-	TEST_CASE(\"Orthodox Canonical Form\")
-	{
-		$CLASS obj1;
-		$CLASS obj2(obj1);
-		$CLASS obj3 = obj2;
-	}
-}" >> $FILE_TEST
+# TEST_SUITE(\"Class $CLASS\")
+# {
+# 	TEST_CASE(\"Orthodox Canonical Form\")
+# 	{
+# 	}
+# }" >> $FILE_TEST

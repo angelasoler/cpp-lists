@@ -4,7 +4,7 @@
 Zombie::Zombie()
 {
 	if (DEBUG)
-		std::cout << "Zombie default constructor called" << std::endl;
+		std::cout << "Zombie constructor called" << std::endl;
 }
 
 Zombie::~Zombie(void)
