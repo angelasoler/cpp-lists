@@ -1,5 +1,5 @@
 NAME = zombies
-SRC = Zombie.cpp newZombie.cpp Main.cpp randomChump.cpp 
+SRC = Zombie.cpp newZombie.cpp main.cpp randomChump.cpp 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
@@ -20,7 +20,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 $(TESTER): $(NAME) $(OBJ_TEST)
-	$(CC) $(CPPFLAGS) -o $(TESTER) $(OBJ_TEST) $(filter-out Main.o, $(OBJ))
+	$(CC) $(CPPFLAGS) -o $(TESTER) $(OBJ_TEST) $(filter-out main.o, $(OBJ))
 
 test: $(TESTER)
 	./$(TESTER)
@@ -29,7 +29,7 @@ leaks:
 	$(VALGRIND) ./$(NAME)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(TESTER) $(OBJ_TEST)
 
 fclean: clean
 	$(RM) $(NAME)

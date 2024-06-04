@@ -1,11 +1,10 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name)
+Zombie::Zombie()
 {
-	this->name = name;
 	if (DEBUG)
-		std::cout << "Zombie constructor called" << std::endl;
+		std::cout << "Zombie default constructor called" << std::endl;
 }
 
 Zombie::~Zombie(void)
@@ -15,7 +14,12 @@ Zombie::~Zombie(void)
 		std::cout << "Zombie destructor called" << std::endl;
 }
 
-void	Zombie::announce( void )
+void	Zombie::set_name(std::string name)
+{
+	this->name = name;
+}
+
+void	Zombie::announce(void)
 {
 	std::cout << this->name
 			<< ": BraiiiiiiinnnzzzZ..."
