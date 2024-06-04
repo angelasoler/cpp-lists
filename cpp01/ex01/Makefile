@@ -1,10 +1,10 @@
-NAME = phonebook
-SRC = Phonebook.cpp Contact.cpp Main.cpp utils.cpp 
+NAME = 
+SRC = .cpp .cpp .cpp .cpp 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -$(LIBS) -g
-LIBS = I../../utils/
+LIBS = I../utils/
 
 TESTER = test.out
 OBJ_TEST = test.o

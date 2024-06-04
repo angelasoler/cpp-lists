@@ -1,5 +1,5 @@
-NAME = phonebook
-SRC = Phonebook.cpp Contact.cpp Main.cpp utils.cpp 
+NAME = zombies
+SRC = Zombie.cpp newZombie.cpp Main.cpp randomChump.cpp 
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
@@ -8,6 +8,8 @@ LIBS = I../../utils/
 
 TESTER = test.out
 OBJ_TEST = test.o
+
+VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 
 all: $(NAME)
 
@@ -22,6 +24,9 @@ $(TESTER): $(NAME) $(OBJ_TEST)
 
 test: $(TESTER)
 	./$(TESTER)
+
+leaks:
+	$(VALGRIND) ./$(NAME)
 
 clean:
 	$(RM) $(OBJ)
