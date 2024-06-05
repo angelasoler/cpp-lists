@@ -58,7 +58,6 @@ int	main(int argc, char *argv[])
 
 	if (getInFileText(fileContent, argv[1]))
 		return (1);
-
 	findInsertAndErase(fileContent, argv[2], argv[3]);
 	fillOutFile(outFileName, fileContent);
 	return (0);
