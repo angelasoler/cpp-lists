@@ -1,4 +1,4 @@
-NAME = repaceInFile
+NAME = replaceInFile
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
@@ -26,7 +26,7 @@ test: $(TESTER)
 	./$(TESTER)
 
 leaks:
-	$(VALGRIND) ./$(NAME)
+	$(VALGRIND) ./$(NAME) gosthfile banana pera
 
 clean:
 	$(RM) $(OBJ) $(TESTER) $(OBJ_TEST)

@@ -2,42 +2,64 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <string.h>
 
 void findInsertAndErase(std::string& fileContent, const std::string& target, const std::string& insertText)
 {
-	size_t						pos;
-	std::string::const_iterator	it;
+	size_t	pos = 0;
 
-	it = fileContent.begin();
-	while (it != fileContent.end())
+	while (1)
 	{
-		pos = fileContent.find(target);
-		it = it + pos;
-		if (it != fileContent.end()) {
-			fileContent.insert(it - fileContent.begin(), insertText);
-			it += insertText.length();
-			fileContent.erase(target.length());
-		}
+		pos = fileContent.find(target, pos);
+		if (pos == std::string::npos)
+			break ;
+		fileContent.erase(pos, target.length());
+		fileContent.insert(pos, insertText);
+		pos += insertText.length();
 	}
+}
+
+void	fillOutFile(const std::string &fileName, const std::string& fileContent)
+{
+	std::ofstream	outFile;
+
+	outFile.open(fileName.c_str(), std::ios::out | std::ios::trunc);
+	outFile << fileContent;
+	outFile.close();
+}
+
+int	getInFileText(std::string &fileContent, char *fileName)
+{
+	std::ifstream		inFile(fileName);
+	std::stringstream	buffer;
+
+	if (inFile.fail()) {
+		std::cerr << "Error opening file" << std::endl;
+		return (1);
+	}
+	buffer << inFile.rdbuf();
+	fileContent = buffer.str();
+	inFile.close();
+	return (0);
 }
 
 int	main(int argc, char *argv[])
 {
 	if (argc != 4) {
-		std::cout << "Use: ./program <FileName> s1 s2" << std::endl;
+		std::cerr << "Use: ./<program> <FileName> s1 s2" << std::endl;
 		return (1);
 	}
-	std::ifstream file(argv[1]);
-	std::stringstream buffer;
+	if (!strlen(argv[2])) {
+		std::cerr << "Use: s1 cannot be empty" << std::endl;
+		return (1);
+	}
+	std::string	fileContent;
+	std::string	outFileName = (std::string)argv[1] + ".replace";
 
-	buffer << file.rdbuf();
-	std::string fileContent = buffer.str();
+	if (getInFileText(fileContent, argv[1]))
+		return (1);
 
-	findInsertAndErase(fileContent, (std::string)argv[2], (std::string)argv[3]);
-
-	std::string	fileName = (std::string)argv[1] + ".replace";
-	std::ofstream(fileName) << fileContent;
-
+	findInsertAndErase(fileContent, argv[2], argv[3]);
+	fillOutFile(outFileName, fileContent);
+	return (0);
 }
-
-// Abra o arquivo e atribua o conteúdo a uma string
