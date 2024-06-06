@@ -1,5 +1,5 @@
 #include "Zombie.hpp"
-#define HORDE_SIZE 300
+#define HORDE_SIZE 6
 #define HORDE_NAME "Heap horde"
 
 int main()
