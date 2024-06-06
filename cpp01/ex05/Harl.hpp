@@ -4,20 +4,18 @@
 
 #include <iostream>
 
-#ifndef DEBUG
-#define DEBUG 0
-#endif
+#define LEVELS 4
 
 class Harl
 {
 	private:
-		Harl(void);
-		~Harl(void);
 		void	debug(void);
 		void	info(void);
 		void	warning(void);
 		void	error(void);
 	public:
+		Harl(void);
+		~Harl(void);
 		void	complain(std::string level);
 };
 
