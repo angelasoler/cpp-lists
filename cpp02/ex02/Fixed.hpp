@@ -19,7 +19,7 @@ class Fixed
 		Fixed(void);
 		Fixed(const int n);
 		Fixed(const float f);
-		Fixed(const Fixed &copy);
+		Fixed(const Fixed &toCopy);
 		~Fixed(void);
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);

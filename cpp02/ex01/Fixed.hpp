@@ -18,8 +18,8 @@ class Fixed
 		Fixed(void);
 		Fixed(const int n);
 		Fixed(const float f);
-		Fixed(const Fixed &copy);
-		Fixed &operator=(const Fixed &copy);
+		Fixed(const Fixed &toCopy);
+		Fixed &operator=(const Fixed &toCopy);
 		friend std::ostream &operator<<(std::ostream& out, const Fixed& value);
 		~Fixed(void);
 		int		getRawBits(void) const;

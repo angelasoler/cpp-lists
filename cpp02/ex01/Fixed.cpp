@@ -22,20 +22,20 @@ Fixed::Fixed(const float f)
 	this->setRawBits(roundf(f * (1 << this->franctionBits)));
 }
 
-Fixed::Fixed(const Fixed &copy)
+Fixed::Fixed(const Fixed &toCopy)
 {
 	if (DEBUG)
 		std::cout << "Copy constructor called" << std::endl;
-	*this = copy;
+	*this = toCopy;
 }
 
-Fixed &Fixed::operator=(const Fixed &copy)
+Fixed &Fixed::operator=(const Fixed &toCopy)
 {
 	if (DEBUG)
 		std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &copy)
+	if (this != &toCopy)
 	{
-		this->fixedPoint =  copy.getRawBits();
+		this->fixedPoint =  toCopy.getRawBits();
 	}
 	return *this;
 }

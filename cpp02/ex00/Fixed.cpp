@@ -8,20 +8,20 @@ Fixed::Fixed(void)
 	this->setRawBits(0);
 }
 
-Fixed::Fixed(const Fixed &copy)
+Fixed::Fixed(const Fixed &toCopy)
 {
 	if (DEBUG)
 		std::cout << "Copy constructor called" << std::endl;
-	*this = copy;
+	*this = toCopy;
 }
 
-Fixed &Fixed::operator=(const Fixed &copy)
+Fixed &Fixed::operator=(const Fixed &toCopy)
 {
 	if (DEBUG)
 		std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &copy)
+	if (this != &toCopy)
 	{
-		this->number =  copy.getRawBits();
+		this->number =  toCopy.getRawBits();
 	}
 	return *this;
 }

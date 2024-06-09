@@ -15,8 +15,8 @@ class Fixed
 		static const int	fraction = 8;
 	public:
 		Fixed(void);
-		Fixed(const Fixed &copy);
-		Fixed &operator=(const Fixed &copy);
+		Fixed(const Fixed &toCopy);
+		Fixed &operator=(const Fixed &toCopy);
 		~Fixed(void);
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
