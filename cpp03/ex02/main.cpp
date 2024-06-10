@@ -1,14 +1,17 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FlagTrap.hpp"
 #include <iostream>
 
 int main( void ) {
-	ClapTrap BaseClass("phil");
-	ScavTrap DerivateClass("Peter");
+	ClapTrap BaseClass("dad");
+	ScavTrap DerivateClass("son");
+	FlagTrap DerivateFromDerivate("grandson");
 
 	BaseClass.setAttackDamage(2);
 	BaseClass.printClapTrapState();
 	DerivateClass.printClapTrapState();
+	DerivateFromDerivate.printClapTrapState();
 
 
 	BaseClass.attack("Peter");
@@ -19,10 +22,16 @@ int main( void ) {
 	DerivateClass.takeDamage(8);
 	DerivateClass.beRepaired(1);
 
+	DerivateFromDerivate.attack("jhon");
+	DerivateFromDerivate.takeDamage(8);
+	DerivateFromDerivate.beRepaired(1);
+
 	std::cout << "\n" << std::endl;
 
 	BaseClass.printClapTrapState();
 	DerivateClass.printClapTrapState();
+	DerivateFromDerivate.printClapTrapState();
 
 	DerivateClass.guardGate();
+	DerivateFromDerivate.highFivesGuys();
 }
