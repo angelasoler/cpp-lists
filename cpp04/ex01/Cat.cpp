@@ -29,12 +29,12 @@ Cat &Cat::operator=(const Cat &copy)
 	return *this;
 }
 
-Cat::~Cat(void)
-{
-	delete brain;
-	if (DEBUG)
-		std::cout << "Cat destructor called" << std::endl;
-}
+	Cat::~Cat(void)
+	{
+		if (DEBUG)
+			std::cout << "Cat destructor called" << std::endl;
+		delete brain;
+	}
 
 void	Cat::makeSound(void) const
 {

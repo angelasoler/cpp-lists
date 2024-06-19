@@ -5,7 +5,7 @@
 #include <iostream>
 
 #ifndef DEBUG
-#define DEBUG 0
+#define DEBUG 1
 #endif
 
 #define N_IDEAS 100
