@@ -33,7 +33,7 @@ class Bureaucrat
 				const std::string msg;
 			public:
 				GradeTooHighException(const char *msg);
-				virtual ~GradeTooHighException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {}
+				virtual ~GradeTooHighException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
 				virtual const char *what()  const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW
 				{
 					return (msg.c_str());
@@ -45,7 +45,7 @@ class Bureaucrat
 				const std::string msg;
 			public:
 				GradeTooLowException(const char *msg);
-				virtual ~GradeTooLowException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {}
+				virtual ~GradeTooLowException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
 				virtual const char *what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW
 				{
 					return (msg.c_str());

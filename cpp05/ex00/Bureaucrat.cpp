@@ -79,3 +79,7 @@ Bureaucrat::~Bureaucrat(void)
 Bureaucrat::GradeTooLowException::GradeTooLowException(const char *msg) : msg(msg) {}
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(const char *msg) : msg(msg) {}
+
+Bureaucrat::GradeTooHighException::~GradeTooHighException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {}
+
+Bureaucrat::GradeTooLowException::~GradeTooLowException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {}
