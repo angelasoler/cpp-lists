@@ -32,7 +32,7 @@ class $CLASS
 	public:
 		$CLASS(void);
 		$CLASS(const $CLASS &copy);
-		$CLASS &operator=(const $CLAS	S &copy);
+		$CLASS &operator=(const $CLASS &copy);
 		~$CLASS(void);
 };
 

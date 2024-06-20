@@ -76,20 +76,20 @@ Bureaucrat::~Bureaucrat(void)
 		std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
-Bureaucrat::GradeTooLowException::GradeTooLowException(const char *msg) : msg(msg) {}
+GradeTooLowException::GradeTooLowException(const char *msg) : msg(msg) {}
 
-Bureaucrat::GradeTooHighException::GradeTooHighException(const char *msg) : msg(msg) {}
+GradeTooHighException::GradeTooHighException(const char *msg) : msg(msg) {}
 
-Bureaucrat::GradeTooHighException::~GradeTooHighException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {}
+GradeTooHighException::~GradeTooHighException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {}
 
-Bureaucrat::GradeTooLowException::~GradeTooLowException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {}
+GradeTooLowException::~GradeTooLowException() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {}
 
-const char *Bureaucrat::GradeTooLowException::what() const throw()
+const char *GradeTooHighException::what() const throw()
 {
 	return (msg.c_str());
 }
 
-const char *Bureaucrat::GradeTooHighException::what() const throw()
+const char *GradeTooLowException::what() const throw()
 {
 	return (msg.c_str());
 }
