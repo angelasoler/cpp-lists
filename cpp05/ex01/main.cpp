@@ -8,7 +8,7 @@ int	main()
 
 	std::cout << Taxes << std::endl;
 
-	std::cout << "\t\t ==== Grade out of range test ====" << std::endl;
+	std::cout << "\n\t\t ==== Grade out of range test ====" << std::endl;
 	try {
 		Form	moreTaxes("more taxes", 200, 200);
 	}
