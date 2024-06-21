@@ -1,10 +1,6 @@
 
 #include "RobotomyRequestForm.hpp"
 
-// Required grades: sign 72, exec 45
-// Makes some drilling noises. Then, informs that <target> has been robotomized
-// successfully 50% of the time. Otherwise, informs that the robotomy failed.
-
 RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 72, 45)
 {
 	if (DEBUG)
@@ -12,6 +8,20 @@ RobotomyRequestForm::RobotomyRequestForm(void) : AForm("RobotomyRequestForm", 72
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : target(target) {}
+
+std::string	RobotomyRequestForm::getTarget(void) const
+{
+	return this->target;
+}
+
+void RobotomyRequestForm::executeSpecificBehavior() const
+{
+	std::cout << "Whirr whirr whirr Bzzzzzz... "
+			<< getTarget()
+			<< "has been robotomized successfully."
+			<< std::endl;
+}
+
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy)
 {

@@ -1,8 +1,8 @@
 
 #include "ShrubberyCreationForm.hpp"
-
-// : Required grades: sign 25, exec 5
-// Informs that <target> has been pardoned by Zaphod Beeblebrox.
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 25, 5)
 {
@@ -11,6 +11,52 @@ ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationFor
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)  : target(target) {}
+
+std::string	ShrubberyCreationForm::getTarget(void) const
+{
+	return this->target;
+}
+
+void ShrubberyCreationForm::executeSpecificBehavior() const
+{
+	std::ofstream	outFile;
+	std::string		fileName = getTarget() + "_shrubbery" ;
+
+	std::cout << "Target:" << getTarget() << std::endl;
+
+	outFile.open(fileName.c_str(), std::ios::out | std::ios::trunc);
+	outFile << "                                   &%                       \n";
+	outFile << "                            &&(  */  (&&  ,                 \n";
+	outFile << "                  ,&%   ,&&   & , &&. .  %& &&   @&&        \n";
+	outFile << "               .   @ .&&# & .&@ ( &  &&,&   %&@  .(#/       \n";
+	outFile << "          &%    (&&,%&   %&%&   (*%#  *,&(    %/&%,(   #,   \n";
+	outFile << "           && &&&% / &&& */   &/#&&,  / ..&# &    &&# .&&   \n";
+	outFile << "       .&&&   .  #%@  .#  &&&%*& # @%,/& ./&.%&&.  &     &&*\n";
+	outFile << "     &&#/&&# @&&   *,&%,&& &&& @ %& %  * &(&(**&&& ,&& .&%  \n";
+	outFile << "    ..       *&/ #& &.%&& ,   &@#&*@%&&, .* @, &&  ,(&# (&&&\n";
+	outFile << "/&&&&#.&&&   &(  &&&,&/ %&%#  &% .&    %&*@.& * , ,  @      \n";
+	outFile << "     ,&%       *&# %, &&. .&& &&.&,&&&,&  %&&  #& &%% *&%   \n";
+	outFile << "         %# %&&&&(&&&&&%&&&*( &&&/@&  %&@ &&(&# ,&& /&, &&. \n";
+	outFile << "     *#(, &  .%&&&&&&&&&&&&&&&&&&. &.  # &&%&&&&%/%%.*/.&&/ \n";
+	outFile << "      .   %, &&&.&&,,&&&    (&&&&%@&  %&&&&&&&&&&&%/ (&&&&&@\n";
+	outFile << "    ,*.  &( &&, &&& &%         &&&& &&&&/            /*     \n";
+	outFile << "     %&% &&                     &&&&&&/                     \n";
+	outFile << "     #.                         (&&&&%                      \n";
+	outFile << "                                .&&&&(                      \n";
+	outFile << "                                 &&&&(                      \n";
+	outFile << "                                .&&&&#                      \n";
+	outFile << "                                /&&&&%                      \n";
+	outFile << "                                &&&&&&                      \n";
+	outFile << "                        ,/##%%%&&&&&&&&&&(                  \n";
+	outFile << "                   ,&&%,.&&%..&&  #&(    #&&&%&&&&//&&#     \n";
+	outFile << "               /&@&& /  &&   *&&   &%&&.&  .&&      #  & &. \n";
+	outFile << "           .,/%&&%     %&  #  .&    .* @@ ,  &/       , *   \n";
+	outFile << "      (    %      ,   %&     &#@     * (&   #.&#           .\n";
+	outFile << "          *        &, #    /&  #      * @   *   **(@        \n";
+	outFile << "                  &   *    #(        .  @*    /    #  .     \n";
+	outFile << "                           # (          #             .     \n";
+	outFile.close();
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy)
 {

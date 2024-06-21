@@ -18,6 +18,8 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(const ShrubberyCreationForm &copy);
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &copy);
 		~ShrubberyCreationForm(void);
+		std::string		getTarget(void) const;
+		virtual void	executeSpecificBehavior() const;
 };
 
 #endif /* SHRUBBERYCREATIONFORM_HPP */

@@ -18,6 +18,8 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm(const PresidentialPardonForm &copy);
 		PresidentialPardonForm &operator=(const PresidentialPardonForm &copy);
 		~PresidentialPardonForm(void);
+		std::string		getTarget(void) const;
+		virtual void	executeSpecificBehavior() const;
 };
 
 #endif /* PRESIDENTIALPARDONFORM_HPP */

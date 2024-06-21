@@ -1,15 +1,25 @@
 
 #include "PresidentialPardonForm.hpp"
-// Create a file <target>_shrubbery in the working directory, and writes ASCII trees
-// inside it.
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm("ShrubberyCreationForm", 145, 137)
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("PresidentialPardonForm", 145, 137)
 {
 	if (DEBUG)
 		std::cout << "PresidentialPardonForm default constructor called" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : target(target) {}
+
+std::string	PresidentialPardonForm::getTarget(void) const
+{
+	return this->target;
+}
+
+void PresidentialPardonForm::executeSpecificBehavior() const
+{
+	std::cout << getTarget()
+		<< "has been pardoned by Zaphod Beeblebrox."
+		<< std::endl;
+}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy)
 {

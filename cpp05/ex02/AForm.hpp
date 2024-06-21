@@ -2,6 +2,7 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
+#include <iomanip>
 #include "Bureaucrat.hpp"
 
 
@@ -31,7 +32,9 @@ class AForm
 		bool				getIsSigned(void) const;
 		void				beSigned(Bureaucrat &bureaucrat);
 		void				signForm(Bureaucrat &bureaucrat);
-		virtual void		execute(Bureaucrat const &executor) const = 0;
+		void				execute(Bureaucrat const &executor) const;
+	protected:
+		virtual void executeSpecificBehavior() const = 0;
 };
 
 class CannotExecuteException : public std::exception {

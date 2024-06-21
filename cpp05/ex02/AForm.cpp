@@ -90,13 +90,11 @@ void	AForm::signForm(Bureaucrat &bureaucrat)
 
 std::ostream	&operator<<(std::ostream& out, AForm &form)
 {
-	out << form.getName()
-		<< " require grade "
-		<< form.getRequireGradeSing()
-		<< " to be signed and grade "
-		<< form.getRequireGradeExec()
-		<< " to be executed. AForm "
-		<< (form.getIsSigned()? " is signed." : " isn't signed.");
+	out << "|" << std::setw(22) << form.getName()
+		<< "|" << std::setw(17) << form.getRequireGradeSing()
+		<< "|" << std::setw(17) << form.getRequireGradeExec()
+		<< "|" << std::setw(12) << (form.getIsSigned()? " Signed" : " Not Signed")
+		<< "|";
 	return out;
 }
 
@@ -104,8 +102,19 @@ void	AForm::execute(Bureaucrat const &executor) const
 {
 	if (!getIsSigned())
 		throw (CannotExecuteException());
-	if (executor.getGrade() < getRequireGradeExec())
+	if (executor.getGrade() > getRequireGradeExec()) {
+		std::cerr << "|" << std::setw(22) << "Name";
+		std::cerr << "|" << std::setw(4) << "Grade";
+		std::cerr << "|" << std::endl;
+		std::cerr << "|" << std::setw(22) << executor.getName();
+		std::cerr << "|" << std::setw(4) << executor.getGrade();
+		std::cerr << "|" << std::endl;
+		std::cerr << "|" << std::setw(22) << getName();
+		std::cerr << "|" << std::setw(4) << getRequireGradeExec();
+		std::cerr << "|" << std::endl;
 		throw (GradeTooLowException("Grade too low to execute this form!"));
+	}
+	executeSpecificBehavior();
 }
 
 CannotExecuteException::CannotExecuteException(void) {}
