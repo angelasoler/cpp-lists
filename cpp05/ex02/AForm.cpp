@@ -67,7 +67,7 @@ void	AForm::setIsSigned(bool isSigned)
 void	AForm::beSigned(Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() > gradeRequireSign) {
-		std::string msg = bureaucrat.getName() + " grade is too low.";
+		std::string msg = bureaucrat.getName() + " grade is too low to sign.";
 		throw GradeTooLowException(msg.c_str());
 	}
 	else

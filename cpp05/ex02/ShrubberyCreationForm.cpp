@@ -22,8 +22,6 @@ void ShrubberyCreationForm::executeSpecificBehavior() const
 	std::ofstream	outFile;
 	std::string		fileName = getTarget() + "_shrubbery" ;
 
-	std::cout << "Target:" << getTarget() << std::endl;
-
 	outFile.open(fileName.c_str(), std::ios::out | std::ios::trunc);
 	outFile << "                                   &%                       \n";
 	outFile << "                            &&(  */  (&&  ,                 \n";
@@ -59,6 +57,7 @@ void ShrubberyCreationForm::executeSpecificBehavior() const
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy)
+	: AForm(copy)
 {
 	if (DEBUG)
 		std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
@@ -71,6 +70,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 		std::cout << "ShrubberyCreationForm copy assignment operator called" << std::endl;
 	if (this != &copy)
 	{
+		this->target = copy.getTarget();
 	}
 	return *this;
 }

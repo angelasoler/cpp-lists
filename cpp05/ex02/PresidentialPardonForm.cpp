@@ -22,6 +22,7 @@ void PresidentialPardonForm::executeSpecificBehavior() const
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy)
+	: AForm(copy)
 {
 	if (DEBUG)
 		std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
@@ -34,6 +35,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 		std::cout << "PresidentialPardonForm copy assignment operator called" << std::endl;
 	if (this != &copy)
 	{
+		this->target = copy.getTarget();
 	}
 	return *this;
 }

@@ -24,6 +24,7 @@ void RobotomyRequestForm::executeSpecificBehavior() const
 
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy)
+	: AForm(copy)
 {
 	if (DEBUG)
 		std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
@@ -36,6 +37,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &c
 		std::cout << "RobotomyRequestForm copy assignment operator called" << std::endl;
 	if (this != &copy)
 	{
+		this->target = copy.getTarget();
 	}
 	return *this;
 }

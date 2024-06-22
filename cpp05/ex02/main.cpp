@@ -4,13 +4,13 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #define N_FORMS_KIND 3
-// #define TestCannotExecuteException
+#define TestCannotExecuteException
 #define TestTooLowException
 
 #ifdef TestTooLowException
 #define SignShrubberyCreation
-// #define SignPresidentialPardom
-// #define SignRobomyRequest
+#define SignPresidentialPardom
+#define SignRobomyRequest
 #endif
 
 // Bureaucrats
@@ -39,9 +39,9 @@ void	printFormsData()
 
 void	printInitData()
 {
-	PresidentPardon = PresidentialPardonForm("PresidentPardon Target");
-	RobotomyRequest = RobotomyRequestForm("RobotomyRequest Target");
-	ShrubberyCreation = ShrubberyCreationForm("ShrubberyCreation Target");
+	PresidentPardon = PresidentialPardonForm("PresidentPardon-Target");
+	RobotomyRequest = RobotomyRequestForm("RobotomyRequest-Target");
+	ShrubberyCreation = ShrubberyCreationForm("ShrubberyCreation-Target");
 
 	forms[0] = &PresidentPardon;
 	forms[1] = &RobotomyRequest;
