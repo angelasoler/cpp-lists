@@ -5,8 +5,12 @@
 #include <iostream>
 #include <cstdlib>
 #include <limits>
+#include <climits>
+#include <float.h>
 #include <cstdlib>
 #include <cstdio>
+#include <string>
+#include <iomanip>
 
 #ifndef DEBUG
 #define DEBUG 0
@@ -14,10 +18,13 @@
 
 typedef enum
 {
-	CHAR = 1,
+	INVALID,
+	CHAR,
 	INT,
 	FLOAT,
-	DOUBLE
+	DOUBLE,
+	OVERLOAD,
+	PSEUDO
 }	types;
 
 class ScalarConverter
