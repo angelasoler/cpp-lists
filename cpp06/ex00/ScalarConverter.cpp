@@ -2,14 +2,8 @@
 #include "ScalarConverter.hpp"
 #define N_TYPES 4
 
-const std::string	floatTypes[N_TYPES] = {"inff", "+inff", "-inff", "nanf"};
-
 std::string	LITERAL;
-double		positive_inf = std::numeric_limits<double>::infinity();
-double		negative_inf = -std::numeric_limits<double>::infinity();
-double		nan_value = std::numeric_limits<double>::quiet_NaN();
-double		pseudoList[4] = {positive_inf, positive_inf, negative_inf, nan_value};
-double		pseudoRet;
+
 char		literalChar = 0;
 int			literalInt = 0;
 double		literalDouble = 0;
@@ -50,17 +44,6 @@ void	isImpossible(void)
 	exit (1);
 }
 
-types	verifyPseudoFloatTypes()
-{
-	for (int i = 0; i < N_TYPES; ++i) {
-		if (floatTypes[i] == LITERAL) {
-			pseudoRet = pseudoList[i];
-			return (PSEUDO);
-		}
-	}
-	return (INVALID);
-}
-
 types	isInt()
 {
 	char* endptr;
@@ -83,10 +66,9 @@ types	isDecimal()
 	char* endptr;
 	double value = strtod(LITERAL.c_str(), &endptr);
 
-	if (*endptr != '\0')
-		return (verifyPseudoFloatTypes());
-	if (value > DBL_MAX || value < -DBL_MAX) {
-		pseudoRet = value;
+	if ((value > DBL_MAX || value < -DBL_MAX) || isnan(value)) {
+		literalDouble = value;
+		literalFloat = static_cast<float> (literalDouble);
 		return (PSEUDO);
 	}
 	literalDouble = value;
@@ -134,10 +116,7 @@ void	ScalarConverter::convert(std::string literal)
 		case PSEUDO:
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
-			std::cout << "float: " << static_cast<float>(pseudoRet)
-				<< "f" << std::endl;
-			std::cout << "double: " << pseudoRet << std::endl;
-			return ;
+			break ;
 		case OVERLOAD:
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: overload" << std::endl;
@@ -154,9 +133,8 @@ void	ScalarConverter::convert(std::string literal)
 			}
 			else
 				std::cout << "char: impossible" << std::endl;
+			std::cout << "int: " << literalInt << std::endl;
 	}
-	if (type != PSEUDO && type != OVERLOAD)
-		std::cout << "int: " << literalInt << std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(6)
 				<< std::setfill('0') << static_cast<float>(literalFloat)
 				<< "f" << std::endl;

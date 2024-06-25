@@ -11,6 +11,7 @@
 #include <cstdio>
 #include <string>
 #include <iomanip>
+#include <cmath>
 
 #ifndef DEBUG
 #define DEBUG 0
