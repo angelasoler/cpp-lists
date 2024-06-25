@@ -1,5 +1,5 @@
-NAME = 
-SRC = .cpp main.cpp
+NAME = identify
+SRC = Base.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f

@@ -4,14 +4,17 @@
 
 #include <iostream>
 
-#ifndef DEBUG
-#define DEBUG 0
-#endif
+typedef enum
+{
+	a,
+	b,
+	c
+}	types;
 
 class Base
 {
 	public:
-		~Base(void);
+		virtual ~Base(void);
 };
 
 #endif /* BASE_HPP */
