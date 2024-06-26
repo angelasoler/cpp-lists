@@ -1,5 +1,5 @@
 NAME = iter
-SRC = main.cpp
+SRC = Bureaucrat.cpp Form.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
