@@ -39,5 +39,9 @@ class ScalarConverter
 		static void	convert(std::string literal);
 };
 
+extern std::string LITERAL;
+
+types	isLiteral(void);
+
 
 #endif /* SCALARCONVERTER_HPP */

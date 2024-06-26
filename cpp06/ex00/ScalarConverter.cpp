@@ -49,7 +49,7 @@ types	isInt()
 	char* endptr;
 	long value = strtol(LITERAL.c_str(), &endptr, 10);
 
-	if (*endptr != '\0')
+	if (*endptr != '\0' && !(*endptr == 'f' && *(endptr+1) != '\0'))
 		return (INVALID);
 	literalDouble = static_cast<double> (value);
 	literalFloat = static_cast<float> (value);
@@ -65,6 +65,9 @@ types	isDecimal()
 {
 	char* endptr;
 	double value = strtod(LITERAL.c_str(), &endptr);
+
+	if (*endptr != '\0' && !(*endptr == 'f' && *(endptr+1) == '\0'))
+		return (INVALID);
 
 	if ((value > DBL_MAX || value < -DBL_MAX) || isnan(value)) {
 		literalDouble = value;
@@ -123,6 +126,7 @@ void	ScalarConverter::convert(std::string literal)
 			break;
 		case INVALID:
 			isImpossible();
+			break ;
 		default:
 			if (literalInt >= 0 && literalInt <= 127) {
 				literalChar = static_cast<char> (literalInt);
