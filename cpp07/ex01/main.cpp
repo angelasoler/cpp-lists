@@ -12,9 +12,10 @@ int	main()
 	::iter(arraychar, 5 , printMember<char>);
 
 	std::cout << "\t\t===== Objects Class =====" << std::endl;
-	Bureaucrat	A("A", 5);
-	Form		Taxes("Taxes", 20, 20);
+	Bureaucrat	A[] = {Bureaucrat("A", 5), Bureaucrat("B", 6)};
+	Form		forms[] = {Form("Taxes", 20, 20), Form("Presidential pardon", 35, 70)};
 
-	std::cout << Taxes << std::endl;
-	std::cout << A << std::endl;
+	::iter(A, 2, printMember<Bureaucrat>);
+	::iter(forms, 2 , printMember<Form>);
+
 }
