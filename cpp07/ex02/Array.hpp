@@ -5,10 +5,6 @@
 #include <iostream>
 #include <stdint.h>
 
-#ifndef DEBUG
-#define DEBUG 0
-#endif
-
 template <typename T>
 class Array
 {
@@ -24,6 +20,8 @@ class Array
 		~Array(void);
 		size_t	size(void) const;
 		void	setData(T data, size_t index);
+		void	initMembers(Array<T> &A);
+		void	printMembers(Array<T> &A);
 };
 
 #include "Array.tpp"

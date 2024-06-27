@@ -2,28 +2,18 @@
 #include "Array.hpp"
 
 template <typename T>
-Array<T>::Array(void) : data(new T), length(0)
-{
-	if (DEBUG)
-		std::cout << "Array constructor called" << std::endl;
-}
+Array<T>::Array(void) : data(new T), length(0) {}
 
 template <typename T>
-Array<T>::Array(unsigned int n) : data(new T[n]), length(n)
-{
-	if (DEBUG)
-		std::cout << "Array constructor called" << std::endl;
-}
+Array<T>::Array(unsigned int n) : data(new T[n]), length(n) {}
 
 template <typename T>
 Array<T>::Array(const Array &copy)
-	: data(new T[copy.length]), length(copy.size())
 {
+	length = copy.length;
+	data = new T[length];
 	for (size_t i = 0; i < length; ++i)
 		data[i] = copy.data[i];
-	if (DEBUG)
-		std::cout << "Array copy constructor called" << std::endl;
-	*this = copy;
 }
 
 template <typename T>
@@ -38,11 +28,9 @@ T &Array<T>::operator[](size_t index)
 template <typename T>
 Array<T> &Array<T>::operator=(const Array &copy)
 {
-	if (DEBUG)
-		std::cout << "Array copy assignment operator called" << std::endl;
 	if (this != &copy)
 	{
-		// delete[] data;
+		delete data;
 		length = copy.length;
 		data = new T[length];
 		for (size_t i = 0; i < size(); ++i) {
@@ -55,9 +43,7 @@ Array<T> &Array<T>::operator=(const Array &copy)
 template <typename T>
 Array<T>::~Array(void)
 {
-	delete data;
-	if (DEBUG)
-		std::cout << "Array destructor called" << std::endl;
+	delete[] data;
 }
 
 template <typename T>
@@ -70,4 +56,26 @@ template <typename T>
 void	Array<T>::setData(T data, size_t index)
 {
 	(*this)[index] = data;
+}
+
+template <typename T>
+void initMembers(Array<T> &A)
+{
+	for (size_t i = 0; i < A.size(); i++)
+		A.setData(0, i);
+}
+
+template <typename T>
+void printMembers(Array<T> &A)
+{
+	std::cout << "\t\t====== Print all members =====" << std::endl;
+		try
+		{
+			for (size_t i = 0; i < A.size(); i++)
+				std::cout << A[i] << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 }
