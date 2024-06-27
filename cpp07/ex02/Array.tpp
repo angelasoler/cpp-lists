@@ -53,29 +53,23 @@ size_t	Array<T>::size(void) const
 }
 
 template <typename T>
-void	Array<T>::setData(T data, size_t index)
+void Array<T>::initMembers(T data)
 {
-	(*this)[index] = data;
-}
-
-template <typename T>
-void initMembers(Array<T> &A)
-{
-	for (size_t i = 0; i < A.size(); i++)
-		A.setData(0, i);
+	for (size_t i = 0; i < size(); i++)
+		(*this)[i] = data;
 }
 
 template <typename T>
 void printMembers(Array<T> &A)
 {
 	std::cout << "\t\t====== Print all members =====" << std::endl;
-		try
-		{
-			for (size_t i = 0; i < A.size(); i++)
-				std::cout << A[i] << std::endl;
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
+	try
+	{
+		for (size_t i = 0; i < A.size(); i++)
+			std::cout << A[i] << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }

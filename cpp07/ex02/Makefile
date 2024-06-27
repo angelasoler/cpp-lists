@@ -1,5 +1,5 @@
 NAME = templateArray
-SRC = main.cpp
+SRC = Bureaucrat.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f

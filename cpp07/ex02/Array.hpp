@@ -19,9 +19,8 @@ class Array
 		T &operator[](size_t i);
 		~Array(void);
 		size_t	size(void) const;
-		void	setData(T data, size_t index);
-		void	initMembers(Array<T> &A);
 		void	printMembers(Array<T> &A);
+		void	initMembers(T A);
 };
 
 #include "Array.tpp"
