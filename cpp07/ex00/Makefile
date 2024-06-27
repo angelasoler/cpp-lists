@@ -1,5 +1,5 @@
 NAME = whatever
-SRC = main.cpp
+SRC = Fixed.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
