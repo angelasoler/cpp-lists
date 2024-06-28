@@ -15,7 +15,6 @@ CLASS_UPPER=$(echo "$CLASS" | tr '[:lower:]' '[:upper:]')
 FILE_CPP=$CLASS.cpp
 FILE_HPP=$CLASS.hpp
 FILE_TEST=test.cpp
-DATE=$(date +"%Y/%m/%d %H:%M:%S")
 
 echo "
 #ifndef "$CLASS_UPPER"_HPP
@@ -61,7 +60,7 @@ echo "
 
 TEST_SUITE(\"Class $CLASS\")
 {
-	TEST_CASE(\"Orthodox Canonical Form\")
+	TEST_CASE(\"\")
 	{
 	}
 }" >> $FILE_TEST

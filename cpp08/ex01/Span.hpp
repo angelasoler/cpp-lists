@@ -21,6 +21,7 @@ class Span
 		void	addNumber(int number);
 		int		shortestSpan();
 		int		longestSpan();
+		void	addAlotRandomNumbers();
 };
 
 #endif /* SPAN_HPP */

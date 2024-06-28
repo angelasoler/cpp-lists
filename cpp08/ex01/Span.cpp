@@ -28,6 +28,14 @@ void	Span::addNumber(int number)
 		throw(std::runtime_error("You hace 0 spaces left!"));
 }
 
+void	Span::addAlotRandomNumbers()
+{
+	srand(time(0));
+
+	while (cont.size() < n)
+		addNumber(rand() % 220000000);
+}
+
 int	Span::shortestSpan()
 {
 	std::vector<int>			tmp;
@@ -53,7 +61,7 @@ int	Span::longestSpan()
 	std::vector<int>	tmp;
 
 	if (cont.size() <= 1)
-		throw(std::runtime_error("There is too few itens om vector!"));
+		throw(std::runtime_error("There is too few itens on vector!"));
 	tmp = cont;
 	std::sort(tmp.begin(), tmp.end());
 	return (tmp.at(tmp.size() - 1) - tmp.at(0));
