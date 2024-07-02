@@ -1,10 +1,6 @@
 
 #include "BitcoinExchange.hpp"
 
-// TO-DO
-// [_] implementar execeptions
-// [_] tratar large number
-
 BitcoinExchange::BitcoinExchange(void) {}
 
 BitcoinExchange::BitcoinExchange(std::string filename) : filename(filename) {}
@@ -26,24 +22,29 @@ BitcoinExchange::~BitcoinExchange(void) {}
 
 void	printExchageLine(std::string date, double value)
 {
-	if (value < 0) {
-		std::cerr << "Error: not a positive number." << std::endl;
-		// throw (negative_number());
-		return ;
+	std::string	token[3];
+	std::string	year;
+	std::string	month;
+	std::string	day;
+
+	std::stringstream ss(date);
+	if (getline(ss, year, '-')) {
+		ss >> month;
+		ss >> day;
 	}
+	else
+		throw (InvalidInput("Error: invalid date"));
+	if (std::atoi(year.c_str()) > 2022 || \
+		std::atoi(month.c_str()) > 12 || \
+		std::atoi(day.c_str()) > 31)
+		throw (InvalidInput("Error: invalid date"));
+	if (value < 0)
+		throw (InvalidInput("Error: not a positive number."));
 	std::map<std::string, double>::iterator it = data.lower_bound(date);
 	if (it != data.begin() && it != data.end() && it->first != date)
 		it--;
-	if (it == data.end() && date > it->first) {
-		std::cerr << "Error: Bad input => " << date << std::endl;
-		// throw (bad_input());
-		return ;
-	}
-	if (value > INT_MAX) {
-		std::cerr << "Error: too large a number." << std::endl;
-		// throw (too_large_number());
-		return ;
-	}
+	if (value > INT_MAX)
+		throw (InvalidInput("Error: too large a number."));
 	std::cout << date << " => " << value << " = " << it->second * value << std::endl;
 }
 
@@ -65,10 +66,28 @@ void	BitcoinExchange::returnExchange()
 			continue;
 		}
 		std::stringstream ss(line);
-		if (getline(ss, date, '|') && ss >> value)
-			printExchageLine(date, value);
+		if (getline(ss, date, '|') && ss >> value) {
+			try
+			{
+				printExchageLine(date, value);
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+			}
+		}
 		else
 			std::cerr << "Error: Bad input => " << date << std::endl;
 	}
 	file.close();
+}
+
+InvalidInput::InvalidInput(const char *msg) : msg(msg) {}
+
+InvalidInput::~InvalidInput() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW {}
+
+
+const char *InvalidInput::what() const throw()
+{
+	return (msg.c_str());
 }

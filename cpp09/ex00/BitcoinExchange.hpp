@@ -9,6 +9,7 @@
 #include <exception>
 #include <fstream>
 #include <climits>
+#include <cstdlib>
 
 extern std::map<std::string, double> data;
 
@@ -23,6 +24,15 @@ class BitcoinExchange
 		BitcoinExchange &operator=(const BitcoinExchange &copy);
 		~BitcoinExchange(void);
 		void	returnExchange(void);
+};
+
+class InvalidInput : public std::exception {
+	private:
+		const std::string msg;
+	public:
+		InvalidInput(const char *msg);
+		virtual ~InvalidInput() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
+		virtual const char *what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
 };
 
 #endif /* BITCOINEXCHANGE_HPP */
