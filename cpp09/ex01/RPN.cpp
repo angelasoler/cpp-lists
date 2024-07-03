@@ -23,39 +23,48 @@ void	makeOp(int *n, char sign, int top)
 	switch (sign)
 	{
 	case '*':
-		*n *= top;
+		*n = top * *n;
 		break;
 	case '+':
-		*n += top;
+		*n = top + *n;
 		break;
 	case '-':
-		*n -= top;
+		*n = top - *n;
 		break;
 	case '/':
-		*n /= top;
+		*n = top / *n;
 		break;
 	default:
 		break;
 	}
 }
 
-void	RPN::makeOperation(std::stack<char> expression)
+void	RPN::makeOperation(std::stack<char> &expression)
 {
 	char	sign;
 	int		n;
+	int		digit;
 
 	while (!expression.empty()) {
 		if (expression.top() != '*' && 
 			expression.top() != '/' &&
 			expression.top() != '+' &&
 			expression.top() != '-')
-			operations.push(std::atoi(&expression.top()));
+		{
+			std::stringstream ss;
+			ss << expression.top();
+			ss >> digit;
+			operations.push(digit);
+		}
 		else {
 			sign = expression.top();
 			n = operations.top();
 			operations.pop();
 			makeOp(&n, sign, operations.top());
+			operations.pop();
+			operations.push(n);
 		}
 		expression.pop();
 	}
+	std::cout << n << std::endl;
 }

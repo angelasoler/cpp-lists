@@ -3,6 +3,7 @@
 #define RPN_HPP
 
 #include <iostream>
+#include <sstream>
 #include <stack>
 #include <cstdlib>
 
@@ -16,7 +17,7 @@ class RPN
 		RPN &operator=(const RPN &copy);
 		~RPN(void);
 
-		void	makeOperation(std::stack<char> expression);
+		void	makeOperation(std::stack<char> &expression);
 };
 
 #endif /* RPN_HPP */
