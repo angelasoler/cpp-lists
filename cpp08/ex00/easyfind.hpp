@@ -19,9 +19,7 @@ void	easyfind(T cont, int toFind)
 					" (counting from zero) \n";
 	}
 	else
-	{
 		throw std::runtime_error("Item not found");
-	}
 }
 
 #endif /* EASYFIND_HPP */
