@@ -18,53 +18,68 @@ RPN &RPN::operator=(const RPN &copy)
 
 RPN::~RPN(void) {}
 
-void	makeOp(int *n, char sign, int top)
+bool	isOperator(char op)
 {
+	if (op == '*' || op == '/' || op == '+' || op == '-') {
+		return true;
+	}
+	if (!isdigit(op)) {
+		std::cout << "Error" << std::endl;
+		exit (1);
+	}
+	return false;
+}
+
+int	RPN::makeOperation(char sign)
+{
+	int	ret;
+
+	ret = operations.top();
+	operations.pop();
 	switch (sign)
 	{
 	case '*':
-		*n = top * *n;
+		ret = operations.top() * ret;
 		break;
 	case '+':
-		*n = top + *n;
+		ret = operations.top() + ret;
 		break;
 	case '-':
-		*n = top - *n;
+		ret = operations.top() - ret;
 		break;
 	case '/':
-		*n = top / *n;
+		ret = operations.top() / ret;
 		break;
 	default:
 		break;
 	}
+	operations.pop();
+	operations.push(ret);
+	return (ret);
 }
 
-void	RPN::makeOperation(std::stack<char> &expression)
+void	RPN::readExpression(std::stack<char> &expression)
 {
 	char	sign;
-	int		n;
+	int		ret;
 	int		digit;
 
 	while (!expression.empty()) {
-		if (expression.top() != '*' && 
-			expression.top() != '/' &&
-			expression.top() != '+' &&
-			expression.top() != '-')
-		{
-			std::stringstream ss;
+		if (!isOperator(expression.top())) {
+			std::stringstream	ss;
 			ss << expression.top();
 			ss >> digit;
 			operations.push(digit);
 		}
 		else {
+			if (operations.size() < 2) {
+				std::cout << "Invalid expression" << std::endl;
+				return ;
+			}
 			sign = expression.top();
-			n = operations.top();
-			operations.pop();
-			makeOp(&n, sign, operations.top());
-			operations.pop();
-			operations.push(n);
+			ret = makeOperation(sign);
 		}
 		expression.pop();
 	}
-	std::cout << n << std::endl;
+	std::cout << ret << std::endl;
 }

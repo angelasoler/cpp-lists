@@ -17,7 +17,8 @@ class RPN
 		RPN &operator=(const RPN &copy);
 		~RPN(void);
 
-		void	makeOperation(std::stack<char> &expression);
+		void	readExpression(std::stack<char> &expression);
+		int		makeOperation(char sign);
 };
 
 #endif /* RPN_HPP */
