@@ -4,7 +4,7 @@
 Brain::Brain(void)
 {
 	if (DEBUG)
-		std::cout << "Brain constructor called" << std::endl;
+		std::cout << "Brain default constructor called" << std::endl;
 }
 
 Brain::Brain(const Brain &copy)
@@ -26,8 +26,18 @@ Brain &Brain::operator=(const Brain &copy)
 	return *this;
 }
 
+std::string	Brain::getIdea(int index)
+{
+	return (ideas[index]);
+}
+
+void	Brain::setIdea(int index, std::string idea)
+{
+	ideas[index] = idea;
+}
+
 Brain::~Brain(void)
 {
 	if (DEBUG)
-		std::cout << "Brain destructor called" << std::endl;
+		std::cout << "Brain default destructor called" << std::endl;
 }

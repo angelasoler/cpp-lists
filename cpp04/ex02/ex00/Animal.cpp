@@ -43,5 +43,5 @@ Animal::~Animal(void)
 
 void	Animal::makeSound(void) const
 {
-	std::cout << "An animal sound" << std::endl;
+	std::cout << "An animal sound." << std::endl;
 }

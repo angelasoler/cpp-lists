@@ -3,23 +3,19 @@
 #define CAT_HPP
 
 #include <iostream>
-#include "AAnimal.hpp"
-#include "Brain.hpp"
+#include "Animal.hpp"
 
 #ifndef DEBUG
 #define DEBUG 0
 #endif
 
-class Cat : public AAnimal
+class Cat : public Animal
 {
-	private:
-		Brain		*brain;
 	public:
 		Cat(void);
 		Cat(const Cat &copy);
-		Cat &operator=(const Cat &copy);
+		virtual Cat &operator=(const Cat &copy);
 		~Cat(void);
-		Brain*	getBrain() const;
 		void	makeSound(void) const;
 };
 

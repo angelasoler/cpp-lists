@@ -1,4 +1,3 @@
-
 #include "Cat.hpp"
 
 Cat::Cat(void)
@@ -10,11 +9,14 @@ Cat::Cat(void)
 }
 
 Cat::Cat(const Cat &copy) : AAnimal()
-
 {
 	if (DEBUG)
 		std::cout << "Cat copy constructor called" << std::endl;
-	*this = copy;
+	if (this != &copy)
+	{
+		setType(copy.getType());
+		brain = new Brain;
+	}
 }
 
 Cat &Cat::operator=(const Cat &copy)
@@ -29,12 +31,17 @@ Cat &Cat::operator=(const Cat &copy)
 	return *this;
 }
 
-	Cat::~Cat(void)
-	{
-		if (DEBUG)
-			std::cout << "Cat destructor called" << std::endl;
-		delete brain;
-	}
+Cat::~Cat(void)
+{
+	if (DEBUG)
+		std::cout << "Cat destructor called" << std::endl;
+	delete brain;
+}
+
+Brain*	Cat::getBrain() const
+{
+	return (brain);
+}
 
 void	Cat::makeSound(void) const
 {
